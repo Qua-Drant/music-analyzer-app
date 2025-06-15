@@ -144,7 +144,7 @@ export default {
       formData.append('musicFile', this.selectedFile);
 
       try {
-        const response = await axios.post('http://localhost:5000/analyze', formData);
+        const response = await axios.post('https://music-analyzer-api.onrender.com', formData);
         this.result = response.data;
       } catch (err) {
         this.error = err.response ? (err.response.data.error || '分析失败') : '无法连接到服务器';
