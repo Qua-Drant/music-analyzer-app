@@ -145,7 +145,7 @@ export default {
 
       try {
         // 问题出在这里：URL 的末尾缺少了 /analyze
-        const response = await axios.post('https://music-analyzer-api.onrender.com', formData, {
+        const response = await axios.post('https://music-analyzer-api.onrender.com/analyze', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
