@@ -24,6 +24,10 @@ jobs:
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GH_PAGES_PAT }}
+          # 【关键变更】使用 SSH 部署密钥，而不是 PAT
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./dist
           force_orphan: true
+          # 【新增】设置提交代码的作者信息
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
