@@ -12,6 +12,10 @@ on:
 # 任务
 jobs:
   build-and-deploy:
+    # 【新增】为本次任务授予权限
+    permissions:
+      contents: write # 允许向仓库的 contents (包括分支) 进行写入操作
+
     # 运行环境：使用最新的 Ubuntu
     runs-on: ubuntu-latest
 
@@ -24,14 +28,13 @@ jobs:
       - name: Set up Node.js 🟩
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # 使用 Node.js 18 版本
+          node-version: '18'
 
       # 第三步：安装项目依赖
       - name: Install dependencies 👨‍💻
         run: npm install
 
       # 第四步：构建生产版本的应用
-      # CI=false 是为了处理一些警告，确保构建过程不会中断
       - name: Build 🏗️
         env:
           CI: false
@@ -42,4 +45,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # 指定要发布的目录
+          publish_dir: ./dist
