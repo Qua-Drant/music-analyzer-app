@@ -79,6 +79,8 @@ import axios from 'axios';
 import 'jsmediatags/dist/jsmediatags.min.js';
 const jsmediatags = window.jsmediatags;
 
+import placeholderImage from './assets/vinyl-placeholder.jpg';
+
 export default {
   data() {
     return {
@@ -88,11 +90,10 @@ export default {
       isLoading: false,
       error: null,
       musicObjectURL: null,
-      albumArtUrl: '/vinyl-placeholder.jpg',
+      albumArtUrl: placeholderImage,
       isAudioPlaying: false,
       // 【新功能】添加 theme 状态，默认为 'dark'
       theme: 'dark',
-      isAudioPlaying: false,
     };
   },
   methods: {
@@ -127,17 +128,17 @@ export default {
                 const base64String = btoa(String.fromCharCode.apply(null, picture.data));
                 this.albumArtUrl = `data:${picture.format};base64,${base64String}`;
               } else {
-                this.albumArtUrl = '/vinyl-placeholder.jpg';
+                this.albumArtUrl = placeholderImage;
               }
             },
             onError: (error) => {
               console.error('无法读取音频元数据:', error);
-              this.albumArtUrl = '/vinyl-placeholder.jpg';
+              this.albumArtUrl = placeholderImage;
             }
           });
       } else {
         console.error("jsmediatags 未能加载");
-        this.albumArtUrl = '/vinyl-placeholder.jpg';
+        this.albumArtUrl = placeholderImage;
       }
 
       const formData = new FormData();
