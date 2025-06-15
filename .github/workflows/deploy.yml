@@ -1,0 +1,45 @@
+# deploy.yml
+
+# 自动化流程的名称
+name: Deploy Vue App to GitHub Pages
+
+# 触发条件：当代码被 push 到 main 分支时
+on:
+  push:
+    branches:
+      - main
+
+# 任务
+jobs:
+  build-and-deploy:
+    # 运行环境：使用最新的 Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      # 第一步：检出（下载）你的仓库代码
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      # 第二步：设置 Node.js 环境
+      - name: Set up Node.js 🟩
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # 使用 Node.js 18 版本
+
+      # 第三步：安装项目依赖
+      - name: Install dependencies 👨‍💻
+        run: npm install
+
+      # 第四步：构建生产版本的应用
+      # CI=false 是为了处理一些警告，确保构建过程不会中断
+      - name: Build 🏗️
+        env:
+          CI: false
+        run: npm run build
+
+      # 第五步：将构建好的文件（dist 目录）部署到 gh-pages 分支
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # 指定要发布的目录
