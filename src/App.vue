@@ -144,7 +144,12 @@ export default {
       formData.append('musicFile', this.selectedFile);
 
       try {
-        const response = await axios.post('https://music-analyzer-api.onrender.com', formData);
+        // 问题出在这里：URL 的末尾缺少了 /analyze
+        const response = await axios.post('https://music-analyzer-api.onrender.com', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         this.result = response.data;
       } catch (err) {
         this.error = err.response ? (err.response.data.error || '分析失败') : '无法连接到服务器';
