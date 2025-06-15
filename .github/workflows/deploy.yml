@@ -1,39 +1,26 @@
-# deploy.yml (终极版)
-
 name: Deploy Vue App to GitHub Pages
-
 on:
   push:
     branches:
       - main
-  # 【新增】允许我们手动从 Actions 标签页触发部署
   workflow_dispatch:
-
 jobs:
   build-and-deploy:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
-
       - name: Set up Node.js 🟩
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          # 【新增】为 npm 设置缓存，提升后续部署速度
           cache: 'npm'
-
       - name: Install dependencies 👨‍💻
         run: npm install
-
       - name: Build 🏗️
-        env:
-          CI: false
         run: npm run build
-
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
         with:
