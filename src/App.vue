@@ -146,7 +146,7 @@ export default {
 
       try {
         // 问题出在这里：URL 的末尾缺少了 /analyze
-        const response = await axios.post('https://e798-2001-250-3002-3270-00-bcf.ngrok-free.app/analyze', formData, {
+        const response = await axios.post('https://ad0f-2001-250-3002-3270-00-bcf.ngrok-free.app/analyze', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
