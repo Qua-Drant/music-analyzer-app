@@ -1,11 +1,9 @@
 # 音乐智能分析平台 - 前端 
-# (Music Intelligence Analysis Platform - Frontend)
+(Music Intelligence Analysis Platform - Frontend)
 
 这是一个现代化的、响应式的 Web 应用前端。它提供了一个优雅的用户界面，允许用户上传音频文件，并通过调用后端 AI 模型，获得即时的、智能化的音乐评分和评论。
 
 **[➡️ 点击此处访问线上 Demo](https://qua-drant.github.io/music-analyzer-app/)**
-
-![应用截图](https://i.imgur.com/3a5340.png) 
 
 ---
 
